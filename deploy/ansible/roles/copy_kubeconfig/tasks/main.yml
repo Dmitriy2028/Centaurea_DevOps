@@ -1,0 +1,7 @@
+---
+- name: Copy kubeconfig from k3s node
+  fetch:
+    src: /root/.kube/config
+    dest: ../kubeconfig/
+    flat: yes
+

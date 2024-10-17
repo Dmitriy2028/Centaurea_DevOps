@@ -1,0 +1,17 @@
+---
+- name: Установка Docker
+  apt:
+    name: docker.io
+    state: present
+    update_cache: yes
+
+- name: Добавление пользователя в группу docker
+  user:
+    name: "{{ ansible_ssh_user }}"
+    group: docker
+
+- name: Запуск и включение Docker
+  systemd:
+    name: docker
+    enabled: yes
+    state: started

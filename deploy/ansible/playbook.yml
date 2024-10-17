@@ -1,0 +1,8 @@
+- hosts: mycluster
+  become: yes
+  roles:
+    - common
+    - docker
+    - k3d
+    - k3d_cluster
+    - copy_kubeconfig

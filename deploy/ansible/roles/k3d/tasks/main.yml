@@ -1,0 +1,16 @@
+---
+- name: Установка k3d
+  shell: |
+    curl -s https://raw.githubusercontent.com/rancher/k3d/main/install.sh | bash
+  args:
+    executable: /bin/bash
+
+- name: Проверка установки k3d
+  command: k3d --version
+  register: k3d_version
+  ignore_errors: yes
+
+- name: Установка k3d, если не установлен
+  shell: |
+    curl -s https://raw.githubusercontent.com/rancher/k3d/main/install.sh | bash
+  when: k3d_version.rc != 0

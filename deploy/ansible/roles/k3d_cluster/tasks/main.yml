@@ -1,0 +1,13 @@
+---
+- name: Создание кластера k3d
+  command: k3d cluster create mycluster
+  register: k3d_create
+  ignore_errors: yes
+
+- name: Проверка статуса кластера
+  command: k3d cluster list
+  register: k3d_status
+
+- name: Вывод статуса кластера
+  debug:
+    var: k3d_status.stdout
