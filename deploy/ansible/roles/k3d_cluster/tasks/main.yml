@@ -1,6 +1,8 @@
 ---
 - name: Создание кластера k3d
-  command: k3d cluster create mycluster
+  command: k3d cluster create mycluster \
+            --api-port 192.168.100.101:36061 \
+            --k3s-arg "--tls-san=192.168.100.101@server:0"
   register: k3d_create
   ignore_errors: yes
 

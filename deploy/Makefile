@@ -23,8 +23,8 @@ setup:
 	ssh-keygen -f '/home/centaurea/.ssh/known_hosts' -R '192.168.100.101'
 	# Запускаем Ansible плейбук из WSL
 	ansible-playbook -i ansible/inventory.ini ansible/playbook.yml --ssh-extra-args='-o StrictHostKeyChecking=no'
-
-kubeconfig: update-config export-kubeconfig
+        # Выполняем настройку kubeconfig после установки
+	$(MAKE) kubeconfig
 
 
 clean:
@@ -32,6 +32,9 @@ clean:
 	cmd.exe /C "cd /D $(WINDOWS_PROJECT_PATH) && vagrant destroy -f"
 	# Дополнительно можно удалить проект
 	rm -rf /mnt/c/Users/centaurea/my-cluster-project/*
+
+
+kubeconfig: update-config export-kubeconfig
 
 
 # Замена IP-адреса сервера в конфигурационном файле
