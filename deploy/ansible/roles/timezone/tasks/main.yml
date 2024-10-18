@@ -1,0 +1,12 @@
+---
+- name: Update apt cache
+  apt:
+    update_cache: yes
+
+- name: Install NTP
+  apt:
+    name: ntp
+    state: present
+
+- name: Set timezone to Asia/Tbilisi
+  command: timedatectl set-timezone Asia/Tbilisi

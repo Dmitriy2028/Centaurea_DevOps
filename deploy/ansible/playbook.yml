@@ -1,6 +1,7 @@
 - hosts: mycluster
   become: yes
   roles:
+    - timezone
     - common
     - docker
     - k3d
