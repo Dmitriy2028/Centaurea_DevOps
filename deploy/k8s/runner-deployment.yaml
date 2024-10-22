@@ -19,4 +19,4 @@ spec:
       volumes:
       - name: github-runner-storage
         persistentVolumeClaim:
-          claimName: github-runner-pvc  # Имя вашего PVC
+          claimName: github-runner-pvc
