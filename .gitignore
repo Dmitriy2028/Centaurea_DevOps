@@ -1,2 +1,4 @@
 deploy/kubeconfig/
+deploy/github/
+deploy/key/
 *:Zone.Identifier

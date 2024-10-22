@@ -52,5 +52,5 @@ update-config:
 # Экспорт переменной KUBECONFIG
 export-kubeconfig:
 	@echo "Exporting KUBECONFIG..."
-	export KUBECONFIG=$(CONFIG_PATH)
+	export KUBECONFIG=$(CONFIG_PATH) 
 	@echo "KUBECONFIG set to $(CONFIG_PATH)"
