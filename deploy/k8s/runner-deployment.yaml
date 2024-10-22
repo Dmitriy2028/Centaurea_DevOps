@@ -1,0 +1,13 @@
+---
+apiVersion: actions.summerwind.dev/v1alpha1
+kind: RunnerDeployment
+metadata:
+  name: github-runners
+  namespace: github-runner
+spec:
+  template:
+    spec:
+      repository: Dmitriy2028/Centaurea_DevOps
+      labels:
+        - my-custom-runner
+      env: []
