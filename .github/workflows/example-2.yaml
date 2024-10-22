@@ -2,7 +2,7 @@
 name: Example 2
 on:
   push:
-    branches: [ main ]
+    branches: [ release ]
 jobs:
   build:
     name: Build Docker
