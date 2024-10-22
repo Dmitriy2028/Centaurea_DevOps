@@ -11,3 +11,12 @@ spec:
       labels:
         - my-custom-runner
       env: []
+      containers:
+      - name: github-runner
+        volumeMounts:
+        - mountPath: /mnt/data/github-runner
+          name: github-runner-storage  # Имя тома
+      volumes:
+      - name: github-runner-storage
+        persistentVolumeClaim:
+          claimName: github-runner-pvc  # Имя вашего PVC
