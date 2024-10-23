@@ -5,6 +5,7 @@ metadata:
   name: github-runners
   namespace: github-runner
 spec:
+  replicas: 1
   template:
     spec:
       repository: Dmitriy2028/Centaurea_DevOps
