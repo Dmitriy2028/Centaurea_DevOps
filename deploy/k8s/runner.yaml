@@ -1,0 +1,9 @@
+---
+apiVersion: actions.summerwind.dev/v1alpha1
+kind: Runner
+metadata:
+  name: github-single-runner
+  namespace: github-runner
+spec:
+  repository: Dmitriy2028/Centaurea_DevOps
+  env: []
