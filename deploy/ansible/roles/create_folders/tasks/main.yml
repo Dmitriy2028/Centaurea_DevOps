@@ -1,0 +1,8 @@
+---
+- name: Create directory for GitHub runner
+  ansible.builtin.file:
+    path: /mnt/data/github-runner
+    state: directory
+    mode: '0755'
+    owner: root
+    group: root

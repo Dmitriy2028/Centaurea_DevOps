@@ -9,7 +9,7 @@ spec:
     - ReadWriteOnce
   hostPath:
     path: /mnt/data/github-runner
-  storageClassName: manual  # Добавьте это поле
+  storageClassName: simple-disk  # Добавьте это поле
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -22,4 +22,4 @@ spec:
   resources:
     requests:
       storage: 1Gi
-  storageClassName: manual  # Добавьте это поле
+  storageClassName: simple-disk  # Добавьте это поле

@@ -1,4 +1,6 @@
-.PHONY: create setup kubeconfig clean
+.PHONY: create setup kubeconfig clusterconfig clean create-github-actions-namespace install-github-actions
+
+export KUBECONFIG=/home/centaurea/Centaurea_DevOps/deploy/kubeconfig/config
 
 # Путь к проекту в Windows
 WINDOWS_PROJECT_PATH := C:\Users\centaurea\my-cluster-project
@@ -34,8 +36,34 @@ clean:
 	rm -rf /mnt/c/Users/centaurea/my-cluster-project/*
 
 
-kubeconfig: update-config export-kubeconfig
+kubeconfig: update-config export-kubeconfig 
 
+clusterconfig: install-cert-manager create-github-actions-namespace create-secret install-github-actions
+
+install-cert-manager:
+	helm install cert-manager jetstack/cert-manager \
+		--namespace cert-manager \
+		--create-namespace \
+		--version v1.16.1 \
+		--set prometheus.enabled=false \
+		--set installCRDs=true
+
+create-secret:
+	kubectl create secret generic controller-manager \
+		-n github-runner \
+		--from-literal=github_app_id=1032412 \
+		--from-literal=github_app_installation_id=56256267 \
+		--from-file=github_app_private_key=key/centaurea-runner.2024-10-22.private-key.pem
+
+create-github-actions-namespace:
+	kubectl create namespace github-runner || echo "Namespace github-runner already exists"
+
+install-github-actions:
+	helm install actions \
+		actions-runner-controller/actions-runner-controller \
+		--namespace github-runner \
+		--version 0.23.7 \
+		--set syncPeriod=1m
 
 # Замена IP-адреса сервера в конфигурационном файле
 update-config:
