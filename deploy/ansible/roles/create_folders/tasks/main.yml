@@ -6,3 +6,11 @@
     mode: '0755'
     owner: root
     group: root
+
+- name: Create directory for local path provisioner
+  ansible.builtin.file:
+    path: /opt/local-path-provisioner
+    state: directory
+    mode: '0755'
+    owner: root
+    group: root

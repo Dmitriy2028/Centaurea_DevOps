@@ -7,3 +7,13 @@ metadata:
 spec:
   repository: Dmitriy2028/Centaurea_DevOps
   env: []
+  containers:
+  - name: github-runner
+    image: summerwind/actions-runner:latest  # Укажите образ для GitHub Runner
+    volumeMounts:
+    - mountPath: /mnt
+      name: github-runner-storage
+  volumes:
+  - name: github-runner-storage
+    persistentVolumeClaim:
+      claimName: github-runner-pvc

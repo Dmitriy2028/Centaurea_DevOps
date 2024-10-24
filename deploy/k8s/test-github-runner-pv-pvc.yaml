@@ -3,13 +3,13 @@ kind: PersistentVolume
 metadata:
   name: github-runner-pv
 spec:
+  storageClassName: manual
   capacity:
     storage: 5Gi
   accessModes:
     - ReadWriteOnce
   hostPath:
     path: /mnt
-  storageClassName: manual  # Добавьте это поле
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -17,9 +17,9 @@ metadata:
   name: github-runner-pvc
   namespace: github-runner
 spec:
+  storageClassName: manual
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 5Gi
-  storageClassName: manual  # Добавьте это поле
+      storage: 1Gi

@@ -40,6 +40,14 @@ kubeconfig: update-config export-kubeconfig
 
 clusterconfig: install-cert-manager create-github-actions-namespace create-secret install-github-actions
 
+install-local-provisioner:
+	@echo "Installing local provisioner..."
+	kubectl apply -f https://raw.githubusercontent.com/rancher/local-path-provisioner/master/deploy/local-path-storage.yaml
+
+set-default-local-provisioner:
+	@echo "Setting local provisioner as default..."
+	kubectl patch storageclass local-path -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
+
 install-cert-manager:
 	helm install cert-manager jetstack/cert-manager \
 		--namespace cert-manager \
