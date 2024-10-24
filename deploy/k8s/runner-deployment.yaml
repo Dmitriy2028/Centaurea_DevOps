@@ -14,8 +14,9 @@ spec:
       env: []
       containers:
       - name: github-runner
+        image: summerwind/actions-runner:latest  # Укажите образ для GitHub Runner
         volumeMounts:
-        - mountPath: /mnt/data/github-runner
+        - mountPath: /mnt
           name: github-runner-storage
       volumes:
       - name: github-runner-storage
