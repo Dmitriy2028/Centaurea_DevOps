@@ -1,4 +1,4 @@
-.PHONY: create setup kubeconfig clusterconfig clean create-github-actions-namespace install-github-actions
+.PHONY: create setup kubeconfig clusterconfig certificate clean create-github-actions-namespace install-github-actions
 
 export KUBECONFIG=/home/centaurea/Centaurea_DevOps/deploy/kubeconfig/config
 
@@ -39,6 +39,19 @@ clean:
 kubeconfig: update-config export-kubeconfig 
 
 clusterconfig: install-cert-manager create-github-actions-namespace create-secret install-github-actions
+
+certificate: create-cloudflare-token apply-issuer apply-certificate
+
+create-cloudflare-token:
+	kubectl create secret generic cloudflare-api-token-secret \
+	--from-file=api-token=key/cloudflare_token.txt \
+	-n cert-manager
+
+apply-issuer:
+	kubectl apply -f k8s/cluster-issuer.yaml
+
+apply-certificate:
+	kubectl apply -f k8s/certificate.yaml
 
 install-local-provisioner:
 	@echo "Installing local provisioner..."

@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: my-cert
+  namespace: cert-manager
+spec:
+  secretName: my-cert-secret
+  issuerRef:
+    name: letsencrypt-dns
+    kind: ClusterIssuer
+  commonName: dmitriy2028.site
+  dnsNames:
+  - dmitriy2028.site
