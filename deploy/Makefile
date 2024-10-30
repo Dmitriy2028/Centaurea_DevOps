@@ -1,4 +1,4 @@
-.PHONY: create setup kubeconfig clusterconfig certificate clean create-github-actions-namespace install-github-actions
+.PHONY: create setup kubeconfig clusterconfig certificate runnerconfig clean create-github-actions-namespace install-github-actions
 
 export KUBECONFIG=/home/centaurea/Centaurea_DevOps/deploy/kubeconfig/config
 
@@ -41,6 +41,8 @@ kubeconfig: update-config export-kubeconfig
 clusterconfig: install-cert-manager create-github-actions-namespace create-secret install-github-actions
 
 certificate: create-cloudflare-token apply-issuer apply-certificate
+
+runnerconfig: create-pv-pvc start-github-runner
 
 create-cloudflare-token:
 	kubectl create secret generic cloudflare-api-token-secret \
@@ -85,6 +87,12 @@ install-github-actions:
 		--namespace github-runner \
 		--version 0.23.7 \
 		--set syncPeriod=1m
+
+create-pv-pvc:
+	kubectl apply -f k8s/github-runner-pv-pvc.yaml
+
+start-github-runner:
+	kubectl apply -f k8s/runner-deployment.yaml
 
 # Замена IP-адреса сервера в конфигурационном файле
 update-config:
