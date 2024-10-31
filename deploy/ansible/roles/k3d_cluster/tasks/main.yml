@@ -4,6 +4,7 @@
             --api-port 192.168.100.101:36061 \
             --k3s-arg "--tls-san=192.168.100.101@server:0" \
             --volume /mnt:/mnt
+            -p "8081:80@loadbalancer"
   register: k3d_create
   ignore_errors: yes
 

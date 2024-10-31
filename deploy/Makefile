@@ -1,4 +1,4 @@
-.PHONY: create setup kubeconfig clusterconfig certificate runnerconfig clean create-github-actions-namespace install-github-actions
+.PHONY: create setup kubeconfig clusterconfig certificate runnerconfig cluster-restart clean create-github-actions-namespace install-github-actions
 
 export KUBECONFIG=/home/centaurea/Centaurea_DevOps/deploy/kubeconfig/config
 
@@ -28,6 +28,14 @@ setup:
         # Выполняем настройку kubeconfig после установки
 	$(MAKE) kubeconfig
 
+cluster-restart:
+	# Устанавливаем права доступа к приватному ключу
+	chmod 600 /mnt/c/Users/centaurea/my-cluster-project/.vagrant/machines/cluster/virtualbox/private_key
+	ssh-keygen -f '/home/centaurea/.ssh/known_hosts' -R '192.168.100.101'
+	# Запускаем Ansible плейбук из WSL
+	ansible-playbook -i ansible/inventory.ini ansible/playbook_kubeconfig_restart.yml --ssh-extra-args='-o StrictHostKeyChecking=no'
+        # Выполняем настройку kubeconfig после установки
+	$(MAKE) kubeconfig
 
 clean:
 	# Удаляем проект в директории Windows
