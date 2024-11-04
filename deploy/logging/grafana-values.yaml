@@ -1,0 +1,6 @@
+persistence:
+  enabled: true
+  storageClassName: "local-path" # Используйте ваш класс хранения
+  accessModes:
+    - ReadWriteOnce
+  size: 10Gi # Размер хранилища, измените по необходимости

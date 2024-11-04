@@ -2,7 +2,7 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: my-cert
-  namespace: cert-manager
+  namespace: default
 spec:
   secretName: my-cert-secret
   issuerRef:
@@ -11,3 +11,4 @@ spec:
   commonName: dmitriy2028.site
   dnsNames:
   - dmitriy2028.site
+  - '*.dmitriy2028.site'
