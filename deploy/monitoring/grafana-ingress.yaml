@@ -1,7 +1,8 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: nginx
+  name: grafana-ingress
+  namespace: monitoring
   annotations:
     kubernetes.io/ingress.class: "traefik"
     traefik.ingress.kubernetes.io/router.tls: "true"
@@ -11,13 +12,13 @@ spec:
     - dmitriy2028.site
     secretName: my-cert-secret
   rules:
-  - host: test.dmitriy2028.site
+  - host: monitoring.dmitriy2028.site
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: nginx
+            name: loki-grafana
             port:
               number: 80

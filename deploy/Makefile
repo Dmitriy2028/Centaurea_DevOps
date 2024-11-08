@@ -1,4 +1,4 @@
-.PHONY: create setup kubeconfig clusterconfig certificate runnerconfig cluster-restart clean create-github-actions-namespace install-github-actions
+.PHONY: create setup kubeconfig clusterconfig certificate runnerconfig cluster-restart clean monitoringconfig create-github-actions-namespace install-github-actions
 
 export KUBECONFIG=/home/centaurea/Centaurea_DevOps/deploy/kubeconfig/config
 
@@ -43,6 +43,14 @@ clean:
 	# Дополнительно можно удалить проект
 	rm -rf /mnt/c/Users/centaurea/my-cluster-project/*
 
+monitoringconfig:
+	helm upgrade --install loki -f monitoring/loki-custom-values.yaml -n monitoring --create-namespace grafana/loki-stack
+	kubectl apply -f monitoring/grafana-ingress.yaml
+
+nginxconfig:
+	kubectl create deployment nginx --image=nginx:latest
+	kubectl expose deployment nginx --port=80
+	kubectl apply -f k8s/ingress.yaml
 
 kubeconfig: update-config export-kubeconfig 
 
