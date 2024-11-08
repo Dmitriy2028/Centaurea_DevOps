@@ -1,0 +1,9 @@
+---
+image:
+  # -- Overrides the image tag whose default is the chart appVersion
+  tag: "v0.12.2"
+
+# Metrics configuration
+metrics:
+  # -- Deploy metrics service
+  enabled: true
