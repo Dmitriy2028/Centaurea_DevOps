@@ -1,0 +1,3 @@
+kustomize:
+  images:
+  - dmitriy2028/nginx-test:v0.3.1
