@@ -36,6 +36,5 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         context: .
-        file: src/Dockerfile  # Указываем путь к Dockerfile
         push: true
         tags: ${{ secrets.DOCKER_USERNAME }}/app-test:${{ env.TAG }}
