@@ -1,15 +1,17 @@
----
 name: Docker Publish and Update Tag
+
 on:
   push:
-    branches: [ release ]
-  paths:
-    - 'src/**'
+    branches:
+      - release   # Работает только при пуше в ветку release
+    paths:
+      - 'src/**'  # Работает только при изменении файлов в папке src
 
 jobs:
   build:
     name: Build Docker
-    runs-on: my-custom-runner
+    runs-on: self-hosted  # Укажите ваш self-hosted runner
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
@@ -36,4 +38,5 @@ jobs:
         context: .
         push: true
         tags: ${{ secrets.DOCKER_USERNAME }}/app-test:${{ env.TAG }}
+
 
