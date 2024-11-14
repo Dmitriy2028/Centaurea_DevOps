@@ -1,7 +1,8 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: nginx
+  name: app-ingress
+  namespace: staging
   annotations:
     kubernetes.io/ingress.class: "traefik"
     traefik.ingress.kubernetes.io/router.tls: "true"
@@ -11,13 +12,13 @@ spec:
     - dmitriy2028.site
     secretName: my-cert-secret
   rules:
-  - host: test1.dmitriy2028.site
+  - host: test.dmitriy2028.site
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: nginx
+            name: app-deployment
             port:
-              number: 80
+              number: 3001
