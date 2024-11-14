@@ -1,4 +1,5 @@
 deploy/kubeconfig/
 deploy/github/
 deploy/key/
+deploy/example/repo-secret.yaml
 *:Zone.Identifier

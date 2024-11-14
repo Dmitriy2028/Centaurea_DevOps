@@ -1,4 +1,4 @@
-.PHONY: create setup kubeconfig clusterconfig certificate runnerconfig cluster-restart clean monitoringconfig create-github-actions-namespace install-github-actions
+.PHONY: create setup kubeconfig clusterconfig certificate runnerconfig argocdconfig cluster-restart clean monitoringconfig create-github-actions-namespace install-github-actions
 
 export KUBECONFIG=/home/centaurea/Centaurea_DevOps/deploy/kubeconfig/config
 
@@ -121,6 +121,14 @@ update-config:
 	@echo "Updating server IP in config..."
 	sed 's|https://0.0.0.0|https://192.168.100.101|' $(CONFIG_PATH) > $(TEMP_CONFIG) && mv $(TEMP_CONFIG) $(CONFIG_PATH)
 	@echo "Server IP updated to https://192.168.100.101:36061"
+
+
+argocdconfig:
+	helm install argocd -n argocd --create-namespace argo/argo-cd --version 3.35.4 -f argocd/argocd.yaml && \
+	helm install updater -n argocd argo/argocd-image-updater --version 0.8.4 -f argocd/image-updater.yaml && \
+	kubectl apply -f argocd/argocd-ingress.yaml && \
+	kubectl apply -f example/repo-secret.yaml && \
+	kubectl apply -f example/application.yaml
 
 # Экспорт переменной KUBECONFIG
 export-kubeconfig:
