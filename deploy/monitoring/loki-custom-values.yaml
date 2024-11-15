@@ -45,8 +45,8 @@ grafana:
     tag: 10.3.3
 
 prometheus:
-  enabled: false
-  isDefault: false
+  enabled: true
+  isDefault: true
   url: http://{{ include "prometheus.fullname" .}}:{{ .Values.prometheus.server.service.servicePort }}{{ .Values.prometheus.server.prefixURL }}
   datasource:
     jsonData: "{}"
