@@ -2,6 +2,7 @@
 namespace: staging
 replicas:
   - name: app-deployment
+    count: 2
 images:
   - name: dmitriy2028/app-test
     newTag: v0.3.1
