@@ -22,8 +22,8 @@ spec:
             - containerPort: 3001
           resources:
             requests:
-              cpu: "50"  # Запрос на 20 миллиCPU
-              memory: "128Mi"  # Запрос на 256 МБ памяти
+              cpu: "100m"  # Запрос на 100 миллиCPU
+              memory: "256Mi"  # Запрос на 256 МБ памяти
             limits:
-              cpu: "250"  # Лимит на 100 миллиCPU
-              memory: "256Mi"  # Лимит на 512 МБ памяти
+              cpu: "500m"  # Лимит на 500 миллиCPU
+              memory: "512Mi"  # Лимит на 512 МБ памяти
