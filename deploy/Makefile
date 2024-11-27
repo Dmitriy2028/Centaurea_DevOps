@@ -128,7 +128,9 @@ argocdconfig:
 	helm install updater -n argocd argo/argocd-image-updater --version 0.8.4 -f argocd/image-updater.yaml && \
 	kubectl apply -f argocd/argocd-ingress.yaml && \
 	kubectl apply -f example/repo-secret.yaml && \
-	kubectl apply -f example/application.yaml
+	kubectl apply -f example/calculator-front.yaml
+	kubectl apply -f example/calculator-back.yaml
+# kubectl apply -f example/application.yaml
 
 # Экспорт переменной KUBECONFIG
 export-kubeconfig:
