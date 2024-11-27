@@ -21,6 +21,9 @@ spec:
           image: dmitriy2028/calculator-front
           ports:
             - containerPort: 80
+          env:
+            - name: REACT_APP_API
+              value: "calculator-back.app-back.svc.cluster.local"
           resources:
             requests:
               cpu: "100m"  # Запрос на 100 миллиCPU
