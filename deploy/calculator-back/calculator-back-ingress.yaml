@@ -2,21 +2,23 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: calculator-back-ingress
-  namespace: app-back  # Неймспейс, в котором находится ваш сервис
+  namespace: app-back
   annotations:
-    # Аннотация для использования Traefik для обработки запросов
-    # traefik.ingress.kubernetes.io/router.entrypoints: websecure  # Используем защищенный HTTPS endpoint
-    traefik.ingress.kubernetes.io/router.rule: "Host(`test.dmitriy2028.site`) && PathPrefix(`/api/calculator`)"
-    traefik.ingress.kubernetes.io/router.middlewares: calculator-back-rewrite  # Переписывание пути (если необходимо)
+    kubernetes.io/ingress.class: "traefik"
+    traefik.ingress.kubernetes.io/router.tls: "true"
 spec:
+  tls:
+  - hosts:
+    - dmitriy2028.site
+    secretName: my-cert-secret
   rules:
-    - host: test.dmitriy2028.site  # Указываем ваш домен
-      http:
-        paths:
-          - path: /api/calculator/*
-            pathType: ImplementationSpecific
-            backend:
-              service:
-                name: calculator-back-service  # Имя вашего сервиса бэкенда
-                port:
-                  number: 8080  # Порт вашего сервиса бэкенда
+  - host: test-back.dmitriy2028.site
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: calculator-back-service
+            port:
+              number: 8080
