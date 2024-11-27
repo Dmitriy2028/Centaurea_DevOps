@@ -1,5 +1,5 @@
 ---
-namespace: staging
+namespace: app-front
 images:
   - name: dmitriy2028/calculator-front
     newTag: v0.1.0
