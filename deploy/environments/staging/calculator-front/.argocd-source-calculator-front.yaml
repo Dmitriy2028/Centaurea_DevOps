@@ -1,0 +1,3 @@
+kustomize:
+  images:
+  - dmitriy2028/calculator-front:0.1.1
