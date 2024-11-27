@@ -46,7 +46,7 @@ grafana:
 
 prometheus:
   enabled: true
-  isDefault: true
+  isDefault: false
   url: http://{{ include "prometheus.fullname" .}}:{{ .Values.prometheus.server.service.servicePort }}{{ .Values.prometheus.server.prefixURL }}
   datasource:
     jsonData: "{}"

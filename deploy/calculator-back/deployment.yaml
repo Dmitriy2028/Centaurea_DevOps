@@ -1,0 +1,30 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: calculator-back-deployment
+  labels:
+    app: calculator-back
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: calculator-back
+  template:
+    metadata:
+      labels:
+        app: calculator-back
+    spec:
+      containers:
+        - name: calculator-back
+          imagePullPolicy: Always
+          image: dmitriy2028/calculator-back
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              cpu: "100m"  # Запрос на 100 миллиCPU
+              memory: "256Mi"  # Запрос на 256 МБ памяти
+            limits:
+              cpu: "500m"  # Лимит на 500 миллиCPU
+              memory: "512Mi"  # Лимит на 512 МБ памяти

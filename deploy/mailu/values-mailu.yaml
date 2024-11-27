@@ -512,7 +512,7 @@ persistence:
 ## Set external ingress config
 ingress:
   ## @param ingress.enabled Enable external ingress
-  enabled: true
+  enabled: false ###########
 
   ## @param ingress.ingressClassName IngressClass that will be be used to implement the Ingress (Kubernetes 1.18+)
   ## This is supported in Kubernetes 1.18+ and required if you have more than one IngressClass marked as the default for your cluster .
@@ -538,7 +538,7 @@ ingress:
   ##annotations: {}
   annotations:
     # Здесь указываем аннотации для Traefik
-    traefik.ingress.kubernetes.io/router.entrypoints: "web,websecure"
+    # traefik.ingress.kubernetes.io/router.entrypoints: "web,websecure"
     traefik.ingress.kubernetes.io/router.tls: "true"
 
   ## @param ingress.tls Enable TLS configuration for the hosts defined at `hostnames` parameter

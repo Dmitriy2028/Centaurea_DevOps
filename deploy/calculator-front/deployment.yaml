@@ -1,0 +1,30 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: calculator-front-deployment
+  labels:
+    app: calculator-front
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: calculator-front
+  template:
+    metadata:
+      labels:
+        app: calculator-front
+    spec:
+      containers:
+        - name: calculator-front
+          imagePullPolicy: Always
+          image: dmitriy2028/calculator-front
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: "100m"  # Запрос на 100 миллиCPU
+              memory: "256Mi"  # Запрос на 256 МБ памяти
+            limits:
+              cpu: "500m"  # Лимит на 500 миллиCPU
+              memory: "512Mi"  # Лимит на 512 МБ памяти

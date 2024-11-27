@@ -1,0 +1,7 @@
+---
+namespace: staging
+images:
+  - name: dmitriy2028/calculator-front
+    newTag: v0.1.0
+resources:
+  - ../../../calculator-front

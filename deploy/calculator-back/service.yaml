@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: calculator-back-service
+  namespace: staging
+spec:
+  selector:
+    app: calculator-back
+  ports:
+    - port: 8080
+      targetPort: 8080
