@@ -4,6 +4,7 @@ kind: Kustomization
 metadata:
   name: arbitrary
 resources:
+  - calculator-back-ingress
   - deployment.yaml
   - namespace.yaml
   - service.yaml
