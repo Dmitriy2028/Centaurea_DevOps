@@ -9,7 +9,7 @@ spec:
     kind: Deployment
     name: calculator-back-deployment
   minReplicas: 2
-  maxReplicas: 5
+  maxReplicas: 3
   metrics:
     - type: Resource
       resource:
