@@ -34,7 +34,7 @@ jobs:
     - name: Build and push Docker image
       uses: docker/build-push-action@v3
       with:
-        context: ./src/frontend 
-        dockerfile: ./src/frontend/Dockerfile
+        context: ./src/backend 
+        dockerfile: ./src/backend/Dockerfile
         push: true
-        tags: ${{ secrets.DOCKER_USERNAME }}/calculator-front:${{ env.TAG }}
+        tags: ${{ secrets.DOCKER_USERNAME }}/calculator-back:${{ env.TAG }}
