@@ -2,7 +2,7 @@ name: Backend CI Pipeline
 
 on:
   workflow_run:
-    workflows: ["Frontend Tests"]
+    workflows: ["Backend Tests"]
     types:
       - completed
 
