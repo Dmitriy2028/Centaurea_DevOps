@@ -23,8 +23,8 @@ spec:
             - containerPort: 8080
           resources:
             requests:
-              cpu: "200m"  # Запрос на 100 миллиCPU
+              cpu: "400m"  # Запрос на 100 миллиCPU
               memory: "256Mi"  # Запрос на 256 МБ памяти
             limits:
-              cpu: "1000m"  # Лимит на 500 миллиCPU
+              cpu: "1500m"  # Лимит на 500 миллиCPU
               memory: "512Mi"  # Лимит на 512 МБ памяти
