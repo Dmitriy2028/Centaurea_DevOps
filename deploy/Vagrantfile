@@ -14,6 +14,8 @@ Vagrant.configure('2') do |config|
       vb.name = "k3d_cluster-#{i}"
       vb.cpus = '4'
       vb.memory = '8192'
+      # vb.cpus = '2'
+      # vb.memory = '4096'
     end
   end
   end

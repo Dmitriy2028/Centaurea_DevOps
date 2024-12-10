@@ -3,6 +3,7 @@
   command: k3d cluster create mycluster \
             --api-port 192.168.100.101:36061 \
             --k3s-arg "--tls-san=192.168.100.101@server:0" \
+            --k3s-arg "--disable=traefik@server:0" \
             --volume /mnt:/mnt
             -p "8081:80@loadbalancer"
   register: k3d_create
@@ -14,4 +15,25 @@
 
 - name: Вывод статуса кластера
   debug:
-    var: k3d_status.stdout
+#     var: k3d_status.stdout
+
+
+
+# - name: Создание кластера k3d
+#   command: k3d cluster create mycluster \
+#             --api-port 192.168.100.101:36061 \
+#             --k3s-arg "--tls-san=192.168.100.101@server:0" \
+#             --k3s-arg "--disable=traefik@server:0" \
+#             --volume /mnt:/mnt
+#             -p "8081:30080@server:0:direct" --no-lb
+#             -p "8443:30443@server:0:direct" --no-lb
+#   register: k3d_create
+#   ignore_errors: yes
+
+# - name: Проверка статуса кластера
+#   command: k3d cluster list
+#   register: k3d_status
+
+# - name: Вывод статуса кластера
+#   debug:
+#     var: k3d_status.stdout

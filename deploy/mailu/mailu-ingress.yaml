@@ -5,25 +5,60 @@ metadata:
   namespace: mailu
   annotations:
     kubernetes.io/ingress.class: "traefik"
-    # traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    # traefik.ingress.kubernetes.io/router.service: mailu-front
     traefik.ingress.kubernetes.io/router.tls: "true"
+    # traefik.ingress.kubernetes.io/router.serversTransport: mailu-mailu-web@kubernetescrd
+    # traefik.ingress.kubernetes.io/router.serversTransport: "mailu-web"
+
 spec:
   tls:
   - hosts:
     - dmitriy2028.site
     secretName: my-cert-secret
   rules:
-    - host: mail.dmitriy2028.site
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: mailu-front
-                port:
-                  number: 443
+  - host: mail.dmitriy2028.site
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            # serversTransport: mailu-web
+            name: mailu-front
+            port:
+              number: 443
+# services:
+#   - name: mailu-front
+#     serversTransport: mailu-web
+#     port: 443
+
+
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: mailu
+#   namespace: mailu
+#   annotations:
+#     kubernetes.io/ingress.class: "traefik"
+#     # traefik.ingress.kubernetes.io/router.entrypoints: websecure
+#     # traefik.ingress.kubernetes.io/router.service: mailu-front
+#     traefik.ingress.kubernetes.io/router.tls: "true"
+# spec:
+#   tls:
+#   - hosts:
+#     - dmitriy2028.site
+#     secretName: my-cert-secret
+#   rules:
+#     - host: mail.dmitriy2028.site
+#       http:
+#         paths:
+#           - path: /
+#             pathType: Prefix
+#             backend:
+#               service:
+#                 name: mailu-front
+#                 port:
+#                   # name: https
+#                   number: 443
 
 
 

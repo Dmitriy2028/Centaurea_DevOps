@@ -1,0 +1,8 @@
+apiVersion: traefik.io/v1alpha1
+kind: ServersTransport
+metadata:
+  name: mailu-web
+  namespace: mailu 
+spec:
+  serverName: mailu-front.mailu.svc.cluster.local
+  insecureSkipVerify: true # <-- This fixes the issue
